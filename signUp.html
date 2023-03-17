@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Criar Conta</title>
+  </head>
+  <body class="bg-slate-900 font-sans">
+    <div class="flex flex-col items-center mt-24">
+      <div class="p-4 rounded-lg bg-slate-800">
+        <i class="fa-solid fa-user-plus text-5xl text-green-400"></i>
+      </div>
+      <h1 class="text-center text-4xl font-bold text-gray-100 mt-4">
+        Do TasksX
+      </h1>
+      <p class="text-center text-base font-regular text-gray-100 mt-4">
+        Crie uma conta e comece a gerênciar suas tarefas.
+      </p>
+
+      <form class="flex flex-col w-full max-w-[26.8rem] mt-[68px]">
+        <p class="font-medium text-gray-100">Nome completo*</p>
+        <input
+          class="p-4 mt-1.5 rounded-lg bg-slate-800 focus:outline outline-blue-700 placeholder:text-base text-gray-100"
+          type="text"
+          name="username"
+          placeholder="Digite seu nome"
+        />
+        <p class="font-medium text-gray-100 mt-8">Endereço de email*</p>
+        <input
+          class="p-4 mt-1.5 rounded-lg bg-slate-800 focus:outline outline-blue-700 placeholder:text-base text-gray-100"
+          type="email"
+          name="email"
+          placeholder="Digite seu email"
+        />
+        <p class="font-medium text-gray-100 mt-8">Senha*</p>
+        <input
+          class="p-4 mt-1.5 rounded-lg bg-slate-800 focus:outline outline-blue-700 placeholder:text-base text-gray-100"
+          type="password"
+          name="password"
+          placeholder="Digite uma senha"
+        />
+        <button
+          class="py-4 mt-8 rounded-lg bg-blue-700 font-medium text-base text-gray-100 mt-7 hover:bg-blue-600 duration-300"
+          type="submit"
+        >
+          Criar conta
+        </button>
+        <p class="font-medium text-base text-gray-500 mt-4">
+          Já possui uma conta?
+          <a class="font-medium text-gray-100" href="#">Faça login</a>
+        </p>
+      </form>
+    </div>
+
+    <script src="./scripts.js"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          fontFamily: {
+            sans: ["'Roboto', sans-serif"],
+          },
+        },
+      };
+    </script>
+  </body>
+</html>
