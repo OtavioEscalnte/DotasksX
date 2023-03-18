@@ -32,23 +32,21 @@
         Crie uma conta e comece a gerênciar suas tarefas.
       </p>
 
-      <form class="flex flex-col w-full max-w-[26.8rem] mt-[68px]">
+      <form
+        id="register-form"
+        class="flex flex-col w-full max-w-[26.8rem] mt-[68px]"
+      >
         <p class="font-medium text-gray-100">Nome completo*</p>
         <input
+          id="name"
           class="p-4 mt-1.5 rounded-lg bg-slate-800 focus:outline outline-blue-700 placeholder:text-base text-gray-100"
           type="text"
           name="username"
           placeholder="Digite seu nome"
         />
-        <p class="font-medium text-gray-100 mt-8">Endereço de email*</p>
+        <p class="font-medium text-gray-100 mt-5">Senha*</p>
         <input
-          class="p-4 mt-1.5 rounded-lg bg-slate-800 focus:outline outline-blue-700 placeholder:text-base text-gray-100"
-          type="email"
-          name="email"
-          placeholder="Digite seu email"
-        />
-        <p class="font-medium text-gray-100 mt-8">Senha*</p>
-        <input
+          id="password"
           class="p-4 mt-1.5 rounded-lg bg-slate-800 focus:outline outline-blue-700 placeholder:text-base text-gray-100"
           type="password"
           name="password"
@@ -56,13 +54,16 @@
         />
         <button
           class="py-4 mt-8 rounded-lg bg-blue-700 font-medium text-base text-gray-100 mt-7 hover:bg-blue-600 duration-300"
-          type="submit"
+          type="button"
+          onclick="register()"
         >
           Criar conta
         </button>
         <p class="font-medium text-base text-gray-500 mt-4">
           Já possui uma conta?
-          <a class="font-medium text-gray-100" href="#">Faça login</a>
+          <a class="font-medium text-gray-100" href="#" onclick="loginScreen()"
+            >Faça login</a
+          >
         </p>
       </form>
     </div>
