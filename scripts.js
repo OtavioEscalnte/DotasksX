@@ -121,3 +121,104 @@ function logout() {
 document.getElementById(
   "welcome"
 ).textContent = `Seja bem-vindo, ${nameStorage}!`;
+
+//CRUD
+
+const form = document.getElementById("form");
+const taskInput = document.getElementById("task-input");
+const taskContainer = document.getElementById("task-container");
+const noTaskMessage = document.getElementById("no-task-message");
+
+let tasks = [];
+
+function renderTasks() {
+  taskContainer.innerHTML = "";
+  if (tasks.length === 0) {
+    noTaskMessage.classList.remove("invisible");
+  } else {
+    noTaskMessage.classList.add("invisible");
+    tasks.forEach((task, index) => {
+      const list = document.getElementById("task-container");
+      list.innerHTML = `
+      <div
+          class="task mt-4 py-6 px-4 bg-slate-800 rounded-lg flex justify-between items-center"
+        >
+          <p class="text-gray-100">${task.description}</p>
+
+          <div class="text-gray-100 flex gap-x-6">
+            <button
+              id="finish"
+              class="flex items-center gap-x-2 hover:text-green-400 duration-300"
+              data-index="${index}"
+            >
+              <i class="fa-regular fa-circle-check"></i><span>Concluir</span>
+            </button>
+            <button
+              id="edit"
+              class="flex items-center gap-x-2 hover:text-blue-400 duration-300"
+              data-index="${index}"
+            >
+              <i class="fa-regular fa-pen-to-square"></i><span>Editar</span>
+            </button>
+            <button
+              id="delete"
+              class="flex items-center gap-x-2 hover:text-red-400 duration-300"
+              data-index="${index}"
+            >
+              <i class="fa-regular fa-circle-xmark"></i><span>Excluir</span>
+            </button>
+          </div>
+        </div>
+      `;
+      const btnFinish = document.getElementById("finish");
+      btnFinish.addEventListener("click", () => {
+        let finished = document.getElementById("finish");
+        finished.classList.add("text-gray-500");
+        saveTasks();
+      });
+      const editButton = document.getElementById("edit");
+      editButton.addEventListener("click", () => {
+        const newDescription = prompt(
+          "Digite uma nova descrição:",
+          tasks.description
+        );
+        if (newDescription) {
+          tasks[index].description = newDescription;
+          saveTasks();
+          renderTasks();
+        }
+      });
+      const deleteButton = document.getElementById("delete");
+      deleteButton.addEventListener("click", () => {
+        tasks.splice(index, 1);
+        saveTasks();
+        renderTasks();
+      });
+    });
+  }
+}
+
+function saveTasks() {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+function loadTasks() {
+  const savedTasks = localStorage.getItem("tasks");
+  if (savedTasks) {
+    tasks = JSON.parse(savedTasks);
+  }
+}
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const description = taskInput.value.trim();
+  if (description) {
+    tasks.push({ description });
+    saveTasks();
+    taskInput.value = "";
+    renderTasks();
+  }
+});
+
+loadTasks();
+renderTasks();
