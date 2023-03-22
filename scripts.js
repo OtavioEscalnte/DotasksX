@@ -80,7 +80,7 @@ function login() {
     );
 
     setTimeout(() => {
-      const removeInvalidNameOrPassword = document.getElementsByTagName("p")[1];
+      const removeInvalidNameOrPassword = document.getElementsByTagName("p")[3];
       removeInvalidNameOrPassword.remove();
     }, 2000);
 
@@ -131,6 +131,7 @@ const noTaskMessage = document.getElementById("no-task-message");
 
 let tasks = [];
 
+// renderiza as tarefas
 function renderTasks() {
   taskContainer.innerHTML = "";
   if (tasks.length === 0) {
@@ -138,12 +139,15 @@ function renderTasks() {
   } else {
     noTaskMessage.classList.add("invisible");
     tasks.forEach((task, index) => {
-      const list = document.getElementById("task-container");
-      list.innerHTML = `
+      const li = document.createElement("li");
+
+      li.innerHTML = `
       <div
           class="task mt-4 py-6 px-4 bg-slate-800 rounded-lg flex justify-between items-center"
         >
-          <p class="text-gray-100">${task.description}</p>
+          <p id="description" class="${
+            task.completed ? "line-through text-gray-500" : "text-gray-100"
+          } ">${task.description}</p>
 
           <div class="text-gray-100 flex gap-x-6">
             <button
@@ -170,13 +174,14 @@ function renderTasks() {
           </div>
         </div>
       `;
-      const btnFinish = document.getElementById("finish");
+      taskContainer.appendChild(li);
+      const btnFinish = li.querySelector("#finish");
       btnFinish.addEventListener("click", () => {
-        let finished = document.getElementById("finish");
-        finished.classList.add("text-gray-500");
+        task.completed = !task.completed;
         saveTasks();
+        renderTasks();
       });
-      const editButton = document.getElementById("edit");
+      const editButton = li.querySelector("#edit");
       editButton.addEventListener("click", () => {
         const newDescription = prompt(
           "Digite uma nova descrição:",
@@ -188,7 +193,7 @@ function renderTasks() {
           renderTasks();
         }
       });
-      const deleteButton = document.getElementById("delete");
+      const deleteButton = li.querySelector("#delete");
       deleteButton.addEventListener("click", () => {
         tasks.splice(index, 1);
         saveTasks();
@@ -198,10 +203,12 @@ function renderTasks() {
   }
 }
 
+// salva as tarefas no localstorage
 function saveTasks() {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
+// carrega as tarefas do localstorage
 function loadTasks() {
   const savedTasks = localStorage.getItem("tasks");
   if (savedTasks) {
@@ -209,11 +216,12 @@ function loadTasks() {
   }
 }
 
+// fomulario para registar tarefas
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   const description = taskInput.value.trim();
   if (description) {
-    tasks.push({ description });
+    tasks.push({ description, completed: false });
     saveTasks();
     taskInput.value = "";
     renderTasks();
