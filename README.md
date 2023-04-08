@@ -17,7 +17,7 @@ O DotasksX é um sistema para gerenciamento de tarefas. Com ele, é possível re
 O DotasksX foi desenvolvido utilizando as seguintes tecnologias:
 
 - HTML
-- CSS
+- TailwindCSS
 - JavaScript
 
 ## Como executar o DotasksX
