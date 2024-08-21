@@ -29,7 +29,7 @@ Antes de começar, você vai precisar ter instalado em sua máquina o Git e um n
 ### Clonando o repositório
 
 ```bash
-$ git clone https://github.com/OtavioEscalnte/DotasksX.git
+git clone https://github.com/OtavioEscalnte/DotasksX.git
 
 ```
 
